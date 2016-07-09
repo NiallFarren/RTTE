@@ -1,0 +1,149 @@
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\csc.exe
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\Microsoft.CodeAnalysis.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\Microsoft.CSharp.Core.targets
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\Microsoft.VisualBasic.Core.targets
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\System.Collections.Immutable.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\System.Reflection.Metadata.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\vbc.exe
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\VBCSCompiler.exe
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\VBCSCompiler.exe.config
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\RealTimeTextEditor.dll.config
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\RealTimeTextEditor.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\RealTimeTextEditor.pdb
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Antlr3.Runtime.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\EntityFramework.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\EntityFramework.SqlServer.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.AspNet.Identity.Core.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.AspNet.Identity.Owin.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Host.SystemWeb.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.Cookies.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.Facebook.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.Google.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.OAuth.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.Twitter.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Web.Infrastructure.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Newtonsoft.Json.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Owin.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.Helpers.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.Mvc.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.Optimization.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.Razor.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.WebPages.Deployment.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.WebPages.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.WebPages.Razor.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\WebGrease.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.Helpers.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.Mvc.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.Optimization.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.Razor.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.WebPages.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.WebPages.Deployment.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.WebPages.Razor.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Antlr3.Runtime.pdb
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Newtonsoft.Json.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\EntityFramework.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\EntityFramework.SqlServer.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.AspNet.Identity.Core.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.AspNet.Identity.Owin.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Host.SystemWeb.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.Facebook.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.Cookies.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.OAuth.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.Google.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.Twitter.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\obj\Debug\RealTimeTextEditor.csprojResolveAssemblyReference.cache
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\obj\Debug\RealTimeTextEditor.dll
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\obj\Debug\RealTimeTextEditor.pdb
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\obj\Debug\RealTimeTextEditor.Migrations.initial.resources
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\obj\Debug\RealTimeTextEditor.csproj.GenerateResource.Cache
+c:\users\nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\obj\Debug\RealTimeTextEditor.Migrations.UserProfile.resources
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\csc.exe
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\vbc.exe
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\VBCSCompiler.exe
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\RealTimeTextEditor.dll.config
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\RealTimeTextEditor.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\RealTimeTextEditor.pdb
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Antlr3.Runtime.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\EntityFramework.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\EntityFramework.SqlServer.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Newtonsoft.Json.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Owin.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.Helpers.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.Mvc.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.Optimization.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.Razor.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.WebPages.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.WebPages.Razor.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\WebGrease.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.Helpers.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.Mvc.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.Optimization.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.Razor.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.WebPages.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\System.Web.WebPages.Razor.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Antlr3.Runtime.pdb
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Newtonsoft.Json.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\EntityFramework.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\EntityFramework.SqlServer.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\obj\Debug\RealTimeTextEditor.Migrations.initial.resources
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\obj\Debug\RealTimeTextEditor.Migrations.UserProfile.resources
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\obj\Debug\RealTimeTextEditor.Migrations.userProfileUpdate.resources
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\obj\Debug\RealTimeTextEditor.csproj.GenerateResource.Cache
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\obj\Debug\RealTimeTextEditor.dll
+C:\Users\Nihil\Desktop\RealTimeTextEditor\RealTimeTextEditor\obj\Debug\RealTimeTextEditor.pdb
+C:\Users\Nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\obj\Debug\RealTimeTextEditor.Migrations.userProfileUpdate.resources
+C:\Users\Nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Nihil\documents\visual studio 2015\Projects\RealTimeTextEditor\RealTimeTextEditor\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
