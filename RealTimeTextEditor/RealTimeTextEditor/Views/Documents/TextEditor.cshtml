@@ -5,14 +5,16 @@
     ViewBag.Title = "TextEditor";
 }
 
+Welcome, @ViewBag.authorname
+
 <h2>TextEditor</h2>
 
 <link rel="stylesheet" type="text/css" href="~/Content/quillStyles/quill.snow.css">
 <link rel="stylesheet" type="text/css" href="~/Content/quillStyles/advanced.css">
 
-<input type="submit" name="save_div" id="save_div" value="Save Contents">
+<input type="submit" name="save_button" id="save_button" value="Save Contents">
+<input type="submit" name="authcolourbutton" id="author-button" value="Show/Hide Author Colours">
 
-<div id="info"> </div>
 <br />
 
 <div class="advanced-wrapper">
@@ -114,6 +116,7 @@
     </div>
     <div class="editor-container"></div>
 </div>
+<div id="info"> </div>
 
 
 
@@ -129,15 +132,31 @@
 
     <script>
 
-    var _, advancedEditor, authorship, basicEditor, cursorManager;
+        var _, advancedEditor, authorship, cursorManager;
+        var clientauthorid = '@(ViewBag.id)';
+        var clientauthorname = '@(ViewBag.authorname)';
+        var clientauthorcolour = '@(ViewBag.authorcolour)';
+        var toggleauthorcolours = true;
 
-    _ = Quill.require('lodash');
+
+        _ = Quill.require('lodash');
+
+        function logged_in_user(id, name, colour) {
+            this.id = id;
+            this.name = name;
+            this.colour = colour;
+        };
+
+        var logged_in_users = [];
 
 
     advancedEditor = new Quill('.advanced-wrapper .editor-container', {
         modules: {
             'authorship': {
-                authorId: 'advanced',
+                authorId: clientauthorid,
+                color: '#' + clientauthorcolour,
+                // quill's built-in "button" config option causes errors so it's disabled
+                // button: '#author-button',
                 enabled: true
             },
             'toolbar': {
@@ -152,12 +171,7 @@
     });
 
     authorship = advancedEditor.getModule('authorship');
-
-    authorship.addAuthor('advanced', 'rgba(255,255,255,255)');
-
     cursorManager = advancedEditor.getModule('multi-cursor');
-
-    cursorManager.setCursor('advanced', 0, 'advanced', 'rgba(255,153,51,0.9)');
 
     $(function () {
 
@@ -177,27 +191,58 @@
         // callback function to confirm save
         textHub.client.saved = function () {
             // show save confirmation in info div
-            $('#info').text('Document Saved');
+            $('#info').append('Document Saved<br>');
         };
 
-        // callback function to load saved doc contents
+        // callback function to load doc contents into client texteditor
         textHub.client.replace = function (contents) {
             var text = JSON.parse(contents);
             advancedEditor.setContents(text);
-        }
+        };
 
+        // callback to register other users on local client
+        textHub.client.register = function (id, name, colour) {
+            $('#info').append(name + ' is logged in!<br>');
+            authorship.addAuthor(id, '#' + colour);
+            cursorManager.setCursor(id, 0, name, '#' + colour);
+            logged_in_users[logged_in_users.length] = { id: id, name: name, colour: colour };
+        };
+
+        // callback to inform client of other user disconnect
+        textHub.client.disconnect = function (name) {
+            $('#info').append(name + ' has disconnected.<br>');
+            // however we retain user info for other purposes
+        };
+
+        // callback to get contents from texteditor
+        textHub.client.retrieve = function (connid) {
+            var requesterid = connid;
+            var text = advancedEditor.getContents();
+            var json = JSON.stringify(text);
+            textHub.server.sync(connid, json);
+        };
+
+        // open connection to hub
         // signalr defaults to websocket; for long-polling, insert { transport: 'longPolling' } as start() argument
         $.connection.hub.start().done(function () {
 
             var filename = '@(Model.UserID)' + '@(Model.Title)';
+
+            // add self to array of current users
+            logged_in_users[logged_in_users.length] = { id: clientauthorid, name: clientauthorname, colour: clientauthorcolour };
+
+            // register user profile information on hub
+            textHub.server.join(clientauthorid, clientauthorname, clientauthorcolour);
+
+            // retrieve the document
             textHub.server.load(filename);
 
-            advancedEditor.on('selection-change', function (range) {
+            /* advancedEditor.on('selection-change', function (range) {
                 return console.info('advanced', 'selection', range);
-            });
+            }); */
 
             advancedEditor.on('text-change', function (delta, source) {
-                $('#info').text(' ');
+                //$('#info').append('');
                 var sourceDelta, targetDelta;
                 if (source === 'api') {
                     return;
@@ -208,9 +253,9 @@
                 textHub.server.send(message);
             });
 
-            $('#save_div').on("click", function (e) {
+            $('#save_button').on("click", function (e) {
 
-                $('#info').text('Saving...');
+                $('#info').append('Saving...<br>');
                 var filename = '@(Model.UserID)' + '@(Model.Title)';
                 var text = advancedEditor.getContents();
                 var json = JSON.stringify(text);
@@ -220,13 +265,30 @@
                 e.preventDefault();
 
             });
+
+            // custom code to toggle author colour display, since quill's built in toggle does not work
+            $('#author-button').on("click", function (e) {
+
+                    if (toggleauthorcolours == true) {
+                        toggleauthorcolours = false;
+                        var authstyles = document.getElementsByTagName("style");
+                        for (var i = 0, n = authstyles.length; i < n; i++) {
+                            var format = authstyles[i];
+                            $(format).replaceWith("<style> .authorship .author-" + logged_in_users[i].id + " { background-color: #FFFFFF; } </style>" );
+                        }
+                    }
+                    else {
+                        toggleauthorcolours = true;
+                        var authstyles = document.getElementsByTagName("style");
+                        for (var i = 0, n = authstyles.length; i < n; i++) {
+                            var format = authstyles[i];
+                            $(format).replaceWith("<style> .authorship .author-" + logged_in_users[i].id + " { background-color: #" + logged_in_users[i].colour + "; } </style>" );
+                        }
+                        
+                    }
+                e.preventDefault();
+            }); 
         });
     });
     </script>
 }
-
-
-
-
-
-

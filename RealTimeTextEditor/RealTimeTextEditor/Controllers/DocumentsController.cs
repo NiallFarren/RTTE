@@ -139,6 +139,7 @@ namespace RealTimeTextEditor.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public ActionResult TextEditor(int? id)
         {
             if (id == null)
@@ -150,6 +151,11 @@ namespace RealTimeTextEditor.Controllers
             {
                 return HttpNotFound();
             }
+            var userID = User.Identity.GetUserId();
+            var profile = db.UserProfiles.First(s => s.UserID.Equals(userID));
+            ViewBag.id = userID;
+            ViewBag.authorname = profile.Name;
+            ViewBag.authorcolour = profile.Colour;
             return View(document);
         }
 
