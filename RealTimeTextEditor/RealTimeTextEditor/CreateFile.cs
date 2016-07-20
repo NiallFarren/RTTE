@@ -8,24 +8,25 @@ namespace RealTimeTextEditor
 {
     public class CreateFile
     {
-        public bool Create (string path)
+        public bool Create(string path)
         {
-           try { 
-                 if (File.Exists(path))
-                 {
-                  File.Delete(path);
-                   }
+            try
+            {
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
 
-                   File.Create(path);
+                File.Create(path);
                 return (true);
-                 }
+            }
 
             catch (Exception Ex)
-                {
-                 Console.WriteLine(Ex.ToString());
+            {
+                Console.WriteLine(Ex.ToString());
                 return (false);
-                 }
-         }
+            }
+        }
 
     }
 }

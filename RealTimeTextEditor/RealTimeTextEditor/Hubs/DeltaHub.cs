@@ -3,6 +3,7 @@ using Microsoft.AspNet.SignalR;
 using System.IO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace RealTimeTextEditor
 {
@@ -103,6 +104,7 @@ namespace RealTimeTextEditor
 
         public override Task OnDisconnected(bool stopCalled)
         {
+            // ensure that list of active users is up to date by removing disconecting users
             HubUser dcUser = HubUsers.Find(r => r.connId == Context.ConnectionId);
             HubUsers.Remove(dcUser);
             Clients.Others.disconnect(dcUser.name);

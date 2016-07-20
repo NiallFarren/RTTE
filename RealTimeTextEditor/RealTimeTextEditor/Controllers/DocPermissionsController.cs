@@ -11,6 +11,7 @@ using RealTimeTextEditor.Models;
 
 namespace RealTimeTextEditor.Controllers
 {
+    [Authorize]
     public class DocPermissionsController : Controller
     {
         private RTTEContext db = new RTTEContext();

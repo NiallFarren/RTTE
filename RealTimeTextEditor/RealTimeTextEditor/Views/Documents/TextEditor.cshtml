@@ -6,14 +6,23 @@
 }
 
 Welcome, @ViewBag.authorname
+<br />
+@{ if (ViewBag.ReadOnly == true)
+            {
+        @Html.Raw("Viewing Document in Read-Only mode")
+    } }
 
 <h2>TextEditor</h2>
 
 <link rel="stylesheet" type="text/css" href="~/Content/quillStyles/quill.snow.css">
 <link rel="stylesheet" type="text/css" href="~/Content/quillStyles/advanced.css">
 
-<input type="submit" name="save_button" id="save_button" value="Save Contents">
+@{ if (ViewBag.ReadOnly == false)
+            {
+        @Html.Raw("<input type=\"submit\" name=\"save_button\" id=\"save_button\" value=\"Save Contents\">")
+    } }
 <input type="submit" name="authcolourbutton" id="author-button" value="Show/Hide Author Colours">
+<input type="submit" name="rtf" id="rtf" value="Download as RTF" />
 
 <br />
 
@@ -167,7 +176,11 @@ Welcome, @ViewBag.authorname
             'multi-cursor': true
         },
         styles: false,
-        theme: 'snow'
+        @{ if (ViewBag.ReadOnly == true)
+            {
+                @Html.Raw("readOnly: true,")
+            } }
+            theme: 'snow'
     });
 
     authorship = advancedEditor.getModule('authorship');
@@ -196,8 +209,11 @@ Welcome, @ViewBag.authorname
 
         // callback function to load doc contents into client texteditor
         textHub.client.replace = function (contents) {
-            var text = JSON.parse(contents);
-            advancedEditor.setContents(text);
+            console.info(contents);
+            if (contents != "") {
+                var text = JSON.parse(contents);
+                advancedEditor.setContents(text);
+            }
         };
 
         // callback to register other users on local client
@@ -266,6 +282,28 @@ Welcome, @ViewBag.authorname
 
             });
 
+            $('#rtf').on("click", function (e) {
+                var filename = '@(Model.UserID)' + '@(Model.Title)';
+                var html = advancedEditor.getHTML();
+                var url = '@(ViewBag.baseUrl)' + "/Documents/RtfDownload";
+                var form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", url);
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", "filename");
+                hiddenField.setAttribute("value", filename);
+                form.appendChild(hiddenField);
+                var hiddenField2 = document.createElement("input");
+                hiddenField2.setAttribute("type", "hidden");
+                hiddenField2.setAttribute("name", "html");
+                hiddenField2.setAttribute("value", html);
+                form.appendChild(hiddenField2);
+                document.body.appendChild(form);
+                form.submit();
+                e.preventDefault();
+            });
+
             // custom code to toggle author colour display, since quill's built in toggle does not work
             $('#author-button').on("click", function (e) {
 
@@ -284,10 +322,10 @@ Welcome, @ViewBag.authorname
                             var format = authstyles[i];
                             $(format).replaceWith("<style> .authorship .author-" + logged_in_users[i].id + " { background-color: #" + logged_in_users[i].colour + "; } </style>" );
                         }
-                        
+
                     }
                 e.preventDefault();
-            }); 
+            });
         });
     });
     </script>

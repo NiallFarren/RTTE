@@ -9,7 +9,10 @@ using System.Web.Mvc;
 using RealTimeTextEditor.Models;
 using Microsoft.AspNet.Identity;
 using RealTimeTextEditor.Context;
+using System.Net.Mail;
+using System.Threading.Tasks;
 using System.IO;
+using System.Net.Mime;
 
 namespace RealTimeTextEditor.Controllers
 {
@@ -21,7 +24,6 @@ namespace RealTimeTextEditor.Controllers
         // GET: Documents
         public ActionResult Index()
         {
-
             var user = User.Identity.GetUserId();
             var documents = from m in db.Documents select m;
             documents = documents.Where(s => s.UserID.Equals(user));
@@ -139,7 +141,7 @@ namespace RealTimeTextEditor.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize]
+
         public ActionResult TextEditor(int? id)
         {
             if (id == null)
@@ -151,15 +153,175 @@ namespace RealTimeTextEditor.Controllers
             {
                 return HttpNotFound();
             }
+
+            // only public documents are accessible without logging in
+            if (!User.Identity.IsAuthenticated)
+            {
+                if (document.Public == false)
+                {
+                    return new HttpUnauthorizedResult();
+                }
+                else
+                {
+                    ViewBag.ReadOnly = true;
+                    ViewBag.authorname = "Guest";
+                    return View(document);
+                }
+            }
+
             var userID = User.Identity.GetUserId();
+            //check access privileges
+            var docpermissions = from m in db.DocPermissions select m;
+            var authorisedUsers = docpermissions.Where(s => s.DocumentID.Equals(document.ID));
+            var userName = User.Identity.GetUserName();
+            authorisedUsers = authorisedUsers.Where(v => v.Email.Equals(userName));
+            DocPermission authorised = null;
+            if (authorisedUsers.Count() > 0)
+            {
+                authorised = authorisedUsers.First(v => v.Email.Equals(userName));
+            }
+            if (authorised == null)
+            {
+                if (document.Public == false)
+                {
+                    return new HttpUnauthorizedResult();
+                }
+                else
+                {
+                    ViewBag.ReadOnly = true;
+                    ViewBag.authorname = userName;
+                    return View(document);
+                }
+            }
+
+            if (authorised.Edit == false)
+            {
+                ViewBag.ReadOnly = true;
+            }
+            else
+            {
+                ViewBag.ReadOnly = false;
+            }
+            // set up user profile details
             var profile = db.UserProfiles.First(s => s.UserID.Equals(userID));
             ViewBag.id = userID;
-            ViewBag.authorname = profile.Name;
-            ViewBag.authorcolour = profile.Colour;
+            if (profile != null)
+            {
+                ViewBag.authorname = profile.Name;
+                ViewBag.authorcolour = profile.Colour;
+            }
+            else
+            {
+                // if no profile is found, just use default settings
+                ViewBag.authorname = userName;
+                ViewBag.authorcolor = "FE2E2E";
+            }
+            var baseUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"));
+            ViewBag.baseUrl = baseUrl;
             return View(document);
         }
 
-protected override void Dispose(bool disposing)
+
+        [Authorize]
+        public ActionResult CreateDocPermission(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Document document = db.Documents.Find(id);
+            if (document == null)
+            {
+                return HttpNotFound();
+            }
+            var user = User.Identity.GetUserId();
+            if (user != document.UserID)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+            ViewBag.docID = document.ID;
+            ViewBag.docTitle = document.Title;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateDocPermission([Bind(Include = "ID,DocumentID,Email,Read,Edit")] DocPermission docPermission)
+        {
+            if (ModelState.IsValid)
+            {
+                db.DocPermissions.Add(docPermission);
+                db.SaveChanges();
+
+                // mailer for invitation
+                var document = db.Documents.First(s => s.ID.Equals(docPermission.DocumentID));
+                var author = document.AuthorName;
+                var title = document.Title;
+                var edit = "";
+                if (docPermission.Edit == true) {
+                    edit = "edit";
+                }
+                else
+                {
+                    edit = "view";
+                }
+                var baseUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"));
+                var fullUrl = baseUrl + "Documents/TextEditor/" + docPermission.DocumentID;
+                var body = "<p>You have been invited by " + author + " to " + edit + " the document \"" + title + "\"" + " at </p>" + fullUrl;
+                var message = new MailMessage();
+                message.To.Add(new MailAddress(docPermission.Email));
+                message.From = new MailAddress("realtimetexteditor@gmail.com");
+                message.Subject = title + " - Invitation to " + edit;
+                message.Body = string.Format(body);
+                message.IsBodyHtml = true;
+
+                using (var smtp = new SmtpClient())
+                {
+                    var credential = new NetworkCredential
+                    {
+                        UserName = "realtimetexteditor@gmail.com",
+                        // gmail security restrictions requires generated google app password for gmail account
+                        Password = "ekofwdlgjxezakex"
+                    };
+                    smtp.Credentials = credential;
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+                    await smtp.SendMailAsync(message);
+
+                }
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public void RtfDownload(string filename, string html)
+        {
+            var path = AppDomain.CurrentDomain.BaseDirectory + "docs/" + filename + ".rtf";
+            // convertor class uses a web browser and a windows forms richtextbox to crudely convert editor
+            // contents to rtf format more suitable for downloading. This is awkward and needs to be done 
+            // in a single threaded apartment, and the results are mediocre, but it works
+            HtmlRtfConvertor convertor = new HtmlRtfConvertor();
+            convertor.ThreadConvertor(path, html);
+            byte[] Content = System.IO.File.ReadAllBytes(path);
+            //return File(Content, MediaTypeNames.Application.Octet, path);
+            //System.Web.HttpResponse response = System.Web.HttpContext.Current.Response;
+            Response.ClearContent();
+            //response.Clear();
+            Response.ContentType = "text/rtf";
+            Response.AddHeader("content-disposition", "attachment; filename=" + filename + ".rtf");
+            Response.BufferOutput = true; ;
+            Response.OutputStream.Write(Content, 0, Content.Length);
+            Response.End();
+        }
+
+
+
+
+
+        protected override void Dispose(bool disposing)
         {
             if (disposing)
             {

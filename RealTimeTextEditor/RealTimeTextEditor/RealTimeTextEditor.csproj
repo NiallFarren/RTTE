@@ -188,6 +188,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HtmlRtfConvertor.cs" />
     <Compile Include="Hubs\DeltaHub.cs" />
     <Compile Include="Migrations\201607061858287_initial.cs" />
     <Compile Include="Migrations\201607061858287_initial.Designer.cs">
@@ -294,6 +295,7 @@
     <Content Include="Views\UserProfiles\Details.cshtml" />
     <Content Include="Views\UserProfiles\Edit.cshtml" />
     <Content Include="Views\UserProfiles\Index.cshtml" />
+    <Content Include="Views\Documents\CreateDocPermission.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
