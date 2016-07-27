@@ -141,19 +141,38 @@ Welcome, @ViewBag.authorname
 
     <script>
 
-        var _, advancedEditor, authorship, cursorManager;
+        var advancedEditor, authorship, cursorManager;
         var clientauthorid = '@(ViewBag.id)';
         var clientauthorname = '@(ViewBag.authorname)';
         var clientauthorcolour = '@(ViewBag.authorcolour)';
+        var doc = @(Model.ID);
+        var filename = '@(Model.UserID)' + '@(Model.Title)';
         var toggleauthorcolours = true;
 
-
-        _ = Quill.require('lodash');
-
+        // object for keeping track of other users
         function logged_in_user(id, name, colour) {
             this.id = id;
             this.name = name;
             this.colour = colour;
+        };
+
+        function togglecolours() {
+            if (toggleauthorcolours == true) {
+                toggleauthorcolours = false;
+                var authstyles = document.getElementsByTagName("style");
+                for (var i = 0, n = authstyles.length; i < n; i++) {
+                    var format = authstyles[i];
+                    $(format).replaceWith("<style> .authorship .author-" + logged_in_users[i].id + " { background-color: #FFFFFF; } </style>" );
+                }
+            }
+            else {
+                toggleauthorcolours = true;
+                var authstyles = document.getElementsByTagName("style");
+                for (var i = 0, n = authstyles.length; i < n; i++) {
+                    var format = authstyles[i];
+                    $(format).replaceWith("<style> .authorship .author-" + logged_in_users[i].id + " { background-color: #" + logged_in_users[i].colour + "; } </style>" );
+                }
+            }
         };
 
         var logged_in_users = [];
@@ -230,7 +249,7 @@ Welcome, @ViewBag.authorname
             // however we retain user info for other purposes
         };
 
-        // callback to get contents from texteditor
+        // callback to get contents from texteditor when requested by another client
         textHub.client.retrieve = function (connid) {
             var requesterid = connid;
             var text = advancedEditor.getContents();
@@ -238,20 +257,20 @@ Welcome, @ViewBag.authorname
             textHub.server.sync(connid, json);
         };
 
+        textHub.client.ok_to_load = function () {
+            // retrieve the document
+            textHub.server.load(filename, doc);
+        }
+
         // open connection to hub
         // signalr defaults to websocket; for long-polling, insert { transport: 'longPolling' } as start() argument
-        $.connection.hub.start().done(function () {
-
-            var filename = '@(Model.UserID)' + '@(Model.Title)';
+        $.connection.hub.start({ transport: 'longPolling' }).done(function () {
 
             // add self to array of current users
             logged_in_users[logged_in_users.length] = { id: clientauthorid, name: clientauthorname, colour: clientauthorcolour };
 
             // register user profile information on hub
-            textHub.server.join(clientauthorid, clientauthorname, clientauthorcolour);
-
-            // retrieve the document
-            textHub.server.load(filename);
+            textHub.server.join(clientauthorid, clientauthorname, clientauthorcolour, doc);
 
             /* advancedEditor.on('selection-change', function (range) {
                 return console.info('advanced', 'selection', range);
@@ -266,18 +285,29 @@ Welcome, @ViewBag.authorname
                 console.info('advanced', 'text', delta, source);
                 var message = JSON.stringify(delta);
                 // all changes are sent to hub to be forwarded to other clients
-                textHub.server.send(message);
+                textHub.server.send(message, doc);
             });
 
             $('#save_button').on("click", function (e) {
 
                 $('#info').append('Saving...<br>');
                 var filename = '@(Model.UserID)' + '@(Model.Title)';
-                var text = advancedEditor.getContents();
-                var json = JSON.stringify(text);
+                var text;
+                var json;
+                // code to prevent author colours being hard coded into the document file
+                if (toggleauthorcolours == true){
+                    togglecolours();
+                    text = advancedEditor.getContents();
+                    json = JSON.stringify(text);
+                    togglecolours();
+                }
+                else {
+                    text = advancedEditor.getContents();
+                    json = JSON.stringify(text);
+                }
                 console.info('Got Contents: ', text);
                 // calling save function on hub
-                textHub.server.save(filename, json);
+                textHub.server.save(filename, json, doc);
                 e.preventDefault();
 
             });
@@ -306,26 +336,10 @@ Welcome, @ViewBag.authorname
 
             // custom code to toggle author colour display, since quill's built in toggle does not work
             $('#author-button').on("click", function (e) {
-
-                    if (toggleauthorcolours == true) {
-                        toggleauthorcolours = false;
-                        var authstyles = document.getElementsByTagName("style");
-                        for (var i = 0, n = authstyles.length; i < n; i++) {
-                            var format = authstyles[i];
-                            $(format).replaceWith("<style> .authorship .author-" + logged_in_users[i].id + " { background-color: #FFFFFF; } </style>" );
-                        }
-                    }
-                    else {
-                        toggleauthorcolours = true;
-                        var authstyles = document.getElementsByTagName("style");
-                        for (var i = 0, n = authstyles.length; i < n; i++) {
-                            var format = authstyles[i];
-                            $(format).replaceWith("<style> .authorship .author-" + logged_in_users[i].id + " { background-color: #" + logged_in_users[i].colour + "; } </style>" );
-                        }
-
-                    }
+                togglecolours();
                 e.preventDefault();
             });
+
         });
     });
     </script>
