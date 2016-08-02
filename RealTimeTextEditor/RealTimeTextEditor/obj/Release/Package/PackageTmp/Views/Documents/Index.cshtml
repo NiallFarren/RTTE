@@ -1,0 +1,53 @@
+﻿@model IEnumerable<RealTimeTextEditor.Models.Document>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New Document", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AuthorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Public)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model._Date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AuthorName)
+        </td>
+        <td>
+            @Html.ActionLink(item.Title, "TextEditor", new { id = item.ID }, new { Class = "action add", title = "Open Document in Text Editor" })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Public)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item._Date)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new {Class = "action add", title="Edit Base Document Settings" }) |
+            @Html.ActionLink("Invite","CreateDocPermission", new { id=item.ID}, new { Class = "action add", title = "Grant Permission to View or Edit this Document" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }, new { Class = "action add", title = "View Document Details" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID }, new { Class = "action add", title = "Permanently Delete the Document" })
+        </td>
+    </tr>
+}
+
+</table>
+ 

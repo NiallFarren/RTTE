@@ -28,7 +28,8 @@ namespace RealTimeTextEditor.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //if no profile exists, direct to create one
+                return RedirectToAction("Create");
             }
             UserProfile userProfile = db.UserProfiles.Find(id);
             if (userProfile == null)

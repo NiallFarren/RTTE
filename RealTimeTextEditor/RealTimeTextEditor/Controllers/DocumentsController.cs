@@ -24,14 +24,22 @@ namespace RealTimeTextEditor.Controllers
         // GET: Documents
         public ActionResult Index()
         {
-            var user = User.Identity.GetUserId();
-            var documents = from m in db.Documents select m;
-            documents = documents.Where(s => s.UserID.Equals(user));
-            return View(documents.ToList());
+            var user = User.Identity.GetUserName();
+            // get list of all docs to which user has access, identified by their associated permissions
+            var accessibleDocs = db.DocPermissions.Where(s => s.Email.Equals(user));
+            var allDocuments = from m in db.Documents select m;
+            List<Document> documents = new List<Document>();
+            foreach (var item in accessibleDocs)
+            {
+                documents.Add(allDocuments.First(s => s.ID.Equals(item.DocumentID)));
+            }
+            ViewBag.user = user;
+            return View(documents);
         }
 
 
         // GET: Documents/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -46,12 +54,14 @@ namespace RealTimeTextEditor.Controllers
             return View(document);
         }
 
+
         // GET: Documents/Create
         [Authorize]
         public ActionResult Create()
         {
             return View();
         }
+
 
         // POST: Documents/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -68,6 +78,7 @@ namespace RealTimeTextEditor.Controllers
                 DocPermission authorPermission = new DocPermission();
                 authorPermission.DocumentID = document.ID;
                 authorPermission.Email = User.Identity.GetUserName();
+                authorPermission.Author = true;
                 authorPermission.Read = true;
                 authorPermission.Edit = true;
                 db.DocPermissions.Add(authorPermission); 
@@ -84,7 +95,9 @@ namespace RealTimeTextEditor.Controllers
             return View(document);
         }
 
+
         // GET: Documents/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -98,6 +111,7 @@ namespace RealTimeTextEditor.Controllers
             }
             return View(document);
         }
+
 
         // POST: Documents/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -115,7 +129,9 @@ namespace RealTimeTextEditor.Controllers
             return View(document);
         }
 
+
         // GET: Documents/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -130,6 +146,7 @@ namespace RealTimeTextEditor.Controllers
             return View(document);
         }
 
+
         // POST: Documents/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -142,6 +159,7 @@ namespace RealTimeTextEditor.Controllers
         }
 
 
+        // GET: Documents/TextEditor/5
         public ActionResult TextEditor(int? id)
         {
             if (id == null)
@@ -171,8 +189,7 @@ namespace RealTimeTextEditor.Controllers
 
             var userID = User.Identity.GetUserId();
             //check access privileges
-            var docpermissions = from m in db.DocPermissions select m;
-            var authorisedUsers = docpermissions.Where(s => s.DocumentID.Equals(document.ID));
+            var authorisedUsers = db.DocPermissions.Where(s => s.DocumentID.Equals(document.ID));
             var userName = User.Identity.GetUserName();
             authorisedUsers = authorisedUsers.Where(v => v.Email.Equals(userName));
             DocPermission authorised = null;
@@ -203,10 +220,10 @@ namespace RealTimeTextEditor.Controllers
                 ViewBag.ReadOnly = false;
             }
             // set up user profile details
-            var profile = db.UserProfiles.First(s => s.UserID.Equals(userID));
             ViewBag.id = userID;
-            if (profile != null)
+            if (db.UserProfiles.Any(s => s.UserID.Equals(userID)))
             {
+                UserProfile profile = db.UserProfiles.First(s => s.UserID.Equals(userID));
                 ViewBag.authorname = profile.Name;
                 ViewBag.authorcolour = profile.Colour;
             }
@@ -214,7 +231,7 @@ namespace RealTimeTextEditor.Controllers
             {
                 // if no profile is found, just use default settings
                 ViewBag.authorname = userName;
-                ViewBag.authorcolor = "FE2E2E";
+                ViewBag.authorcolour = "FE2E2E";
             }
             var baseUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"));
             ViewBag.baseUrl = baseUrl;
@@ -222,6 +239,7 @@ namespace RealTimeTextEditor.Controllers
         }
 
 
+        // GET: Documents/CreateDocPermission/5
         [Authorize]
         public ActionResult CreateDocPermission(int? id)
         {
@@ -244,6 +262,7 @@ namespace RealTimeTextEditor.Controllers
             return View();
         }
 
+        // POST: Documents/CreateDocPermission
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateDocPermission([Bind(Include = "ID,DocumentID,Email,Read,Edit")] DocPermission docPermission)
@@ -295,6 +314,7 @@ namespace RealTimeTextEditor.Controllers
             return RedirectToAction("Index");
         }
 
+
         [HttpPost]
         [ValidateInput(false)]
         public void RtfDownload(string filename, string html)
@@ -302,7 +322,7 @@ namespace RealTimeTextEditor.Controllers
             var path = AppDomain.CurrentDomain.BaseDirectory + "docs/" + filename + ".rtf";
             // convertor class uses a web browser and a windows forms richtextbox to crudely convert editor
             // contents to rtf format more suitable for downloading. This is awkward and needs to be done 
-            // in a single threaded apartment, and the results are mediocre, but it works
+            // in a single threaded apartment, and the results are mediocre, but it works (deployment environment permitting)
             HtmlRtfConvertor convertor = new HtmlRtfConvertor();
             convertor.ThreadConvertor(path, html);
             byte[] Content = System.IO.File.ReadAllBytes(path);
@@ -316,9 +336,6 @@ namespace RealTimeTextEditor.Controllers
             Response.OutputStream.Write(Content, 0, Content.Length);
             Response.End();
         }
-
-
-
 
 
         protected override void Dispose(bool disposing)

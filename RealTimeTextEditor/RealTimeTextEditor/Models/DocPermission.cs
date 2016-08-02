@@ -11,6 +11,7 @@ namespace RealTimeTextEditor.Models
         public int DocumentID { get; set; }
         // email identifies the individual to whom read and/or edit permissions are to be granted for the specified document
         public string Email { get; set; }
+        public bool Author { get; set; }
         public bool Read { get; set; }
         public bool Edit { get; set; }
 

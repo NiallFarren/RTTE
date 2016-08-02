@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RealTimeTextEditor.DeltaHub">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="RealTimeTextEditor.DeltaHub.HubUser" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Hubs\DeltaHub.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAgIIAAAAAAAiAAEAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Hubs\DeltaHub.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealTimeTextEditor.HtmlRtfConvertor">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="RealTimeTextEditor.HtmlRtfConvertor.ConvertorData">
+        <TypeIdentifier>
+          <NewMemberFileName>HtmlRtfConvertor.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HtmlRtfConvertor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

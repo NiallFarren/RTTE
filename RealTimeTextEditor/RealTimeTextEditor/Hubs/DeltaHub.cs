@@ -71,8 +71,14 @@ namespace RealTimeTextEditor
             { 
                 // if the user is the only one accessing the document, load from saved file
                 var path = AppDomain.CurrentDomain.BaseDirectory + "docs/" + filename + ".txt";
-                var contents = File.ReadAllLines(path);
-                Clients.Caller.replace(contents);
+               try {
+                    var contents = File.ReadAllLines(path);
+                    Clients.Caller.replace(contents);
+               }
+                catch
+                {
+                    Console.Write("error reading file");
+                } 
             }
             else
             {

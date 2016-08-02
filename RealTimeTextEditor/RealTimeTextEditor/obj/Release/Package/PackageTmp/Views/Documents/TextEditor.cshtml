@@ -1,0 +1,346 @@
+﻿@model RealTimeTextEditor.Models.Document
+
+
+@{
+    ViewBag.Title = "TextEditor";
+}
+
+Welcome, @ViewBag.authorname
+<br />
+@{ if (ViewBag.ReadOnly == true)
+            {
+        @Html.Raw("Viewing Document in Read-Only mode")
+    } }
+
+<h2>TextEditor</h2>
+
+<link rel="stylesheet" type="text/css" href="~/Content/quillStyles/quill.snow.css">
+<link rel="stylesheet" type="text/css" href="~/Content/quillStyles/advanced.css">
+
+@{ if (ViewBag.ReadOnly == false)
+            {
+        @Html.Raw("<input type=\"submit\" name=\"save_button\" id=\"save_button\" value=\"Save Contents\">")
+    } }
+<input type="submit" name="authcolourbutton" id="author-button" value="Show/Hide Author Colours">
+<input type="submit" name="rtf" id="rtf" value="Download as RTF" />
+
+<br />
+
+<div class="advanced-wrapper">
+    <div class="toolbar-container">
+        <span class="ql-format-group">
+            <select title="Font" class="ql-font">
+                <option value="sans-serif" selected>Sans Serif</option>
+                <option value="Georgia, serif">Serif</option>
+                <option value="Monaco, 'Courier New', monospace">Monospace</option>
+            </select>
+            <select title="Size" class="ql-size">
+                <option value="10px">Small</option>
+                <option value="13px" selected>Normal</option>
+                <option value="18px">Large</option>
+                <option value="32px">Huge</option>
+            </select>
+        </span><span class="ql-format-group"><span title="Bold" class="ql-format-button ql-bold"></span><span class="ql-format-separator"></span><span title="Italic" class="ql-format-button ql-italic"></span><span class="ql-format-separator"></span><span title="Underline" class="ql-format-button ql-underline"></span></span><span class="ql-format-group">
+            <select title="Text Color" class="ql-color">
+                <option value="rgb(0, 0, 0)" selected></option>
+                <option value="rgb(230, 0, 0)"></option>
+                <option value="rgb(255, 153, 0)"></option>
+                <option value="rgb(255, 255, 0)"></option>
+                <option value="rgb(0, 138, 0)"></option>
+                <option value="rgb(0, 102, 204)"></option>
+                <option value="rgb(153, 51, 255)"></option>
+                <option value="rgb(255, 255, 255)"></option>
+                <option value="rgb(250, 204, 204)"></option>
+                <option value="rgb(255, 235, 204)"></option>
+                <option value="rgb(255, 255, 204)"></option>
+                <option value="rgb(204, 232, 204)"></option>
+                <option value="rgb(204, 224, 245)"></option>
+                <option value="rgb(235, 214, 255)"></option>
+                <option value="rgb(187, 187, 187)"></option>
+                <option value="rgb(240, 102, 102)"></option>
+                <option value="rgb(255, 194, 102)"></option>
+                <option value="rgb(255, 255, 102)"></option>
+                <option value="rgb(102, 185, 102)"></option>
+                <option value="rgb(102, 163, 224)"></option>
+                <option value="rgb(194, 133, 255)"></option>
+                <option value="rgb(136, 136, 136)"></option>
+                <option value="rgb(161, 0, 0)"></option>
+                <option value="rgb(178, 107, 0)"></option>
+                <option value="rgb(178, 178, 0)"></option>
+                <option value="rgb(0, 97, 0)"></option>
+                <option value="rgb(0, 71, 178)"></option>
+                <option value="rgb(107, 36, 178)"></option>
+                <option value="rgb(68, 68, 68)"></option>
+                <option value="rgb(92, 0, 0)"></option>
+                <option value="rgb(102, 61, 0)"></option>
+                <option value="rgb(102, 102, 0)"></option>
+                <option value="rgb(0, 55, 0)"></option>
+                <option value="rgb(0, 41, 102)"></option>
+                <option value="rgb(61, 20, 102)"></option>
+            </select><span class="ql-format-separator"></span>
+            <select title="Background Color" class="ql-background">
+                <option value="rgb(0, 0, 0)"></option>
+                <option value="rgb(230, 0, 0)"></option>
+                <option value="rgb(255, 153, 0)"></option>
+                <option value="rgb(255, 255, 0)"></option>
+                <option value="rgb(0, 138, 0)"></option>
+                <option value="rgb(0, 102, 204)"></option>
+                <option value="rgb(153, 51, 255)"></option>
+                <option value="rgb(255, 255, 255)" selected></option>
+                <option value="rgb(250, 204, 204)"></option>
+                <option value="rgb(255, 235, 204)"></option>
+                <option value="rgb(255, 255, 204)"></option>
+                <option value="rgb(204, 232, 204)"></option>
+                <option value="rgb(204, 224, 245)"></option>
+                <option value="rgb(235, 214, 255)"></option>
+                <option value="rgb(187, 187, 187)"></option>
+                <option value="rgb(240, 102, 102)"></option>
+                <option value="rgb(255, 194, 102)"></option>
+                <option value="rgb(255, 255, 102)"></option>
+                <option value="rgb(102, 185, 102)"></option>
+                <option value="rgb(102, 163, 224)"></option>
+                <option value="rgb(194, 133, 255)"></option>
+                <option value="rgb(136, 136, 136)"></option>
+                <option value="rgb(161, 0, 0)"></option>
+                <option value="rgb(178, 107, 0)"></option>
+                <option value="rgb(178, 178, 0)"></option>
+                <option value="rgb(0, 97, 0)"></option>
+                <option value="rgb(0, 71, 178)"></option>
+                <option value="rgb(107, 36, 178)"></option>
+                <option value="rgb(68, 68, 68)"></option>
+                <option value="rgb(92, 0, 0)"></option>
+                <option value="rgb(102, 61, 0)"></option>
+                <option value="rgb(102, 102, 0)"></option>
+                <option value="rgb(0, 55, 0)"></option>
+                <option value="rgb(0, 41, 102)"></option>
+                <option value="rgb(61, 20, 102)"></option>
+            </select><span class="ql-format-separator"></span>
+            <select title="Text Alignment" class="ql-align">
+                <option value="left" selected></option>
+                <option value="center"></option>
+                <option value="right"></option>
+                <option value="justify"></option>
+            </select>
+        </span><span class="ql-format-group"><span title="Link" class="ql-format-button ql-link"></span><span class="ql-format-separator"></span><span title="Image" class="ql-format-button ql-image"></span><span class="ql-format-separator"></span><span title="List" class="ql-format-button ql-list"></span></span>
+    </div>
+    <div class="editor-container"></div>
+</div>
+<div id="info"> </div>
+
+
+
+@section scripts {
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+    <script src="~/Scripts/quill.js"></script>
+
+
+    <script>
+
+        var advancedEditor, authorship, cursorManager;
+        var clientauthorid = '@(ViewBag.id)';
+        var clientauthorname = '@(ViewBag.authorname)';
+        var clientauthorcolour = '@(ViewBag.authorcolour)';
+        var doc = @(Model.ID);
+        var filename = '@(Model.UserID)' + '@(Model.Title)';
+        var toggleauthorcolours = true;
+
+        // object for keeping track of other users
+        function logged_in_user(id, name, colour) {
+            this.id = id;
+            this.name = name;
+            this.colour = colour;
+        };
+
+        function togglecolours() {
+            if (toggleauthorcolours == true) {
+                toggleauthorcolours = false;
+                var authstyles = document.getElementsByTagName("style");
+                for (var i = 0, n = authstyles.length; i < n; i++) {
+                    var format = authstyles[i];
+                    $(format).replaceWith("<style> .authorship .author-" + logged_in_users[i].id + " { background-color: #FFFFFF; } </style>" );
+                }
+            }
+            else {
+                toggleauthorcolours = true;
+                var authstyles = document.getElementsByTagName("style");
+                for (var i = 0, n = authstyles.length; i < n; i++) {
+                    var format = authstyles[i];
+                    $(format).replaceWith("<style> .authorship .author-" + logged_in_users[i].id + " { background-color: #" + logged_in_users[i].colour + "; } </style>" );
+                }
+            }
+        };
+
+        var logged_in_users = [];
+
+
+    advancedEditor = new Quill('.advanced-wrapper .editor-container', {
+        modules: {
+            'authorship': {
+                authorId: clientauthorid,
+                color: '#' + clientauthorcolour,
+                // quill's built-in "button" config option causes errors so it's disabled
+                // button: '#author-button',
+                enabled: true
+            },
+            'toolbar': {
+                container: '.advanced-wrapper .toolbar-container'
+            },
+            'link-tooltip': true,
+            'image-tooltip': true,
+            'multi-cursor': true
+        },
+        styles: false,
+        @{ if (ViewBag.ReadOnly == true)
+            {
+                @Html.Raw("readOnly: true,")
+            } }
+            theme: 'snow'
+    });
+
+    authorship = advancedEditor.getModule('authorship');
+    cursorManager = advancedEditor.getModule('multi-cursor');
+
+    $(function () {
+
+        // enable singalR logging in browser console
+        $.connection.hub.logging = true;
+
+        // Reference the auto-generated proxy for the hub.
+        var textHub = $.connection.deltaHub;
+
+        // Create a function that the hub can call back to update text editor.
+        textHub.client.update = function (change) {
+            // Update the change
+            var update = JSON.parse(change);
+            advancedEditor.updateContents(update);
+        };
+
+        // callback function to confirm save
+        textHub.client.saved = function () {
+            // show save confirmation in info div
+            $('#info').append('Document Saved<br>');
+        };
+
+        // callback function to load doc contents into client texteditor
+        textHub.client.replace = function (contents) {
+            console.info(contents);
+            if (contents != "") {
+                var text = JSON.parse(contents);
+                advancedEditor.setContents(text);
+            }
+        };
+
+        // callback to register other users on local client
+        textHub.client.register = function (id, name, colour) {
+            $('#info').append(name + ' is logged in!<br>');
+            authorship.addAuthor(id, '#' + colour);
+            cursorManager.setCursor(id, 0, name, '#' + colour);
+            logged_in_users[logged_in_users.length] = { id: id, name: name, colour: colour };
+        };
+
+        // callback to inform client of other user disconnect
+        textHub.client.disconnect = function (name) {
+            $('#info').append(name + ' has disconnected.<br>');
+            // however we retain user info for other purposes
+        };
+
+        // callback to get contents from texteditor when requested by another client
+        textHub.client.retrieve = function (connid) {
+            var requesterid = connid;
+            var text = advancedEditor.getContents();
+            var json = JSON.stringify(text);
+            textHub.server.sync(connid, json);
+        };
+
+        textHub.client.ok_to_load = function () {
+            // retrieve the document
+            textHub.server.load(filename, doc);
+        }
+
+        // open connection to hub
+        // signalr defaults to websocket; for long-polling, insert { transport: 'longPolling' } as start() argument
+        $.connection.hub.start({ transport: 'longPolling' }).done(function () {
+
+            // add self to array of current users
+            logged_in_users[logged_in_users.length] = { id: clientauthorid, name: clientauthorname, colour: clientauthorcolour };
+
+            // register user profile information on hub
+            textHub.server.join(clientauthorid, clientauthorname, clientauthorcolour, doc);
+
+            /* advancedEditor.on('selection-change', function (range) {
+                return console.info('advanced', 'selection', range);
+            }); */
+
+            advancedEditor.on('text-change', function (delta, source) {
+                //$('#info').append('');
+                var sourceDelta, targetDelta;
+                if (source === 'api') {
+                    return;
+                }
+                console.info('advanced', 'text', delta, source);
+                var message = JSON.stringify(delta);
+                // all changes are sent to hub to be forwarded to other clients
+                textHub.server.send(message, doc);
+            });
+
+            $('#save_button').on("click", function (e) {
+
+                $('#info').append('Saving...<br>');
+                var filename = '@(Model.UserID)' + '@(Model.Title)';
+                var text;
+                var json;
+                // code to prevent author colours being hard coded into the document file
+                if (toggleauthorcolours == true){
+                    togglecolours();
+                    text = advancedEditor.getContents();
+                    json = JSON.stringify(text);
+                    togglecolours();
+                }
+                else {
+                    text = advancedEditor.getContents();
+                    json = JSON.stringify(text);
+                }
+                console.info('Got Contents: ', text);
+                // calling save function on hub
+                textHub.server.save(filename, json, doc);
+                e.preventDefault();
+
+            });
+
+            $('#rtf').on("click", function (e) {
+                var filename = '@(Model.UserID)' + '@(Model.Title)';
+                var html = advancedEditor.getHTML();
+                var url = '@(ViewBag.baseUrl)' + "/Documents/RtfDownload";
+                var form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", url);
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", "filename");
+                hiddenField.setAttribute("value", filename);
+                form.appendChild(hiddenField);
+                var hiddenField2 = document.createElement("input");
+                hiddenField2.setAttribute("type", "hidden");
+                hiddenField2.setAttribute("name", "html");
+                hiddenField2.setAttribute("value", html);
+                form.appendChild(hiddenField2);
+                document.body.appendChild(form);
+                form.submit();
+                e.preventDefault();
+            });
+
+            // custom code to toggle author colour display, since quill's built in toggle does not work
+            $('#author-button').on("click", function (e) {
+                togglecolours();
+                e.preventDefault();
+            });
+
+        });
+    });
+    </script>
+}

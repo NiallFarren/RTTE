@@ -224,3 +224,4 @@ C:\DissertationProjectGitRepo\RealTimeTextEditor\RealTimeTextEditor\obj\Debug\Re
 C:\DissertationProjectGitRepo\RealTimeTextEditor\RealTimeTextEditor\obj\Debug\RealTimeTextEditor.csproj.GenerateResource.Cache
 C:\DissertationProjectGitRepo\RealTimeTextEditor\RealTimeTextEditor\obj\Debug\RealTimeTextEditor.dll
 C:\DissertationProjectGitRepo\RealTimeTextEditor\RealTimeTextEditor\obj\Debug\RealTimeTextEditor.pdb
+C:\DissertationProjectGitRepo\RealTimeTextEditor\RealTimeTextEditor\obj\Debug\RealTimeTextEditor.Migrations.permissionsAuthor.resources

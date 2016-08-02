@@ -17,7 +17,8 @@ namespace RealTimeTextEditor
                     File.Delete(path);
                 }
 
-                File.Create(path);
+                // file create is wrapped in using statement to ensure file access is disposed of correctly
+                using (var stream = File.Create(path));
                 return (true);
             }
 
