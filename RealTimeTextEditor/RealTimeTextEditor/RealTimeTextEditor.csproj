@@ -248,6 +248,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ClassDiagram2.cd" />
+    <None Include="Properties\PublishProfiles\freetrialvm - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\rtte.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\delta.js" />

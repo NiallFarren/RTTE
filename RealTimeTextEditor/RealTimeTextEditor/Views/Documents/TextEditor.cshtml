@@ -135,7 +135,6 @@ Welcome, @ViewBag.authorname
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
     <script src="~/signalr/hubs"></script>
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
     <script src="~/Scripts/quill.js"></script>
 
 
@@ -211,10 +210,10 @@ Welcome, @ViewBag.authorname
         // enable singalR logging in browser console
         $.connection.hub.logging = true;
 
-        // Reference the auto-generated proxy for the hub.
+        // reference the auto-generated proxy for Signalr hub
         var textHub = $.connection.deltaHub;
 
-        // Create a function that the hub can call back to update text editor.
+        // callback to update text editor
         textHub.client.update = function (change) {
             // Update the change
             var update = JSON.parse(change);
@@ -247,7 +246,7 @@ Welcome, @ViewBag.authorname
         // callback to inform client of other user disconnect
         textHub.client.disconnect = function (name) {
             $('#info').append(name + ' has disconnected.<br>');
-            // however we retain user info for other purposes
+            // however we retain user info for authorship etc
         };
 
         // callback to get contents from texteditor when requested by another client

@@ -75,3 +75,4 @@ C:\DissertationProjectGitRepo\RealTimeTextEditor\RealTimeTextEditor\obj\Release\
 C:\DissertationProjectGitRepo\RealTimeTextEditor\RealTimeTextEditor\obj\Release\RealTimeTextEditor.csproj.GenerateResource.Cache
 C:\DissertationProjectGitRepo\RealTimeTextEditor\RealTimeTextEditor\obj\Release\RealTimeTextEditor.dll
 C:\DissertationProjectGitRepo\RealTimeTextEditor\RealTimeTextEditor\obj\Release\RealTimeTextEditor.pdb
+C:\DissertationProjectGitRepo\RealTimeTextEditor\RealTimeTextEditor\obj\Release\RealTimeTextEditor.Migrations.permissionsAuthor.resources

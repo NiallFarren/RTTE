@@ -20,23 +20,25 @@ namespace RealTimeTextEditor.Controllers
         // GET: UserProfiles
         public ActionResult Index()
         {
-            return View(db.UserProfiles.ToList());
+            return RedirectToAction("Details");
+           // return View(db.UserProfiles.ToList());
         }
 
-        // GET: UserProfiles/Details/5
-        public ActionResult Details(int? id)
+        // GET: UserProfiles/Details
+        public ActionResult Details()
         {
-            if (id == null)
+            var Userid = User.Identity.GetUserId();
+            if (db.UserProfiles.Any(s => s.UserID.Equals(Userid)))
+            {
+                UserProfile profile = db.UserProfiles.First(s => s.UserID.Equals(Userid));
+                return View(profile);
+            }
+            else
             {
                 //if no profile exists, direct to create one
                 return RedirectToAction("Create");
             }
-            UserProfile userProfile = db.UserProfiles.Find(id);
-            if (userProfile == null)
-            {
-                return HttpNotFound();
-            }
-            return View(userProfile);
+
         }
 
         // GET: UserProfiles/Create

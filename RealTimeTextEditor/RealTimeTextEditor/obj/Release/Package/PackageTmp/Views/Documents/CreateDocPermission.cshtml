@@ -17,6 +17,7 @@ Send an invitation to read/edit and grant access permissions to "@ViewBag.docTit
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.DocumentID, new { @Value = ViewBag.docID })
         @Html.HiddenFor(model => model.Read, new { @Value = true })
+        @Html.HiddenFor(model => model.Author, new { @Value = false })
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
